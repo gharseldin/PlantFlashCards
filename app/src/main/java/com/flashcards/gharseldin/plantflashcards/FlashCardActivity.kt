@@ -5,6 +5,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_flash_card.*
 
@@ -35,5 +37,11 @@ class FlashCardActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun onButton5Click(v: View) {
+        var i = 1 + 1
+        Toast.makeText(this, "You clikced me ", Toast.LENGTH_LONG).show()
+        var j = 1 + 2
     }
 }
