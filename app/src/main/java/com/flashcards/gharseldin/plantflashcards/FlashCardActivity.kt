@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-
+import com.flashcards.gharseldin.plantflashcards.dto.Plant
 import kotlinx.android.synthetic.main.activity_flash_card.*
 
 class FlashCardActivity : AppCompatActivity() {
@@ -41,7 +41,12 @@ class FlashCardActivity : AppCompatActivity() {
 
     fun onButton5Click(v: View) {
         var i = 1 + 1
-        Toast.makeText(this, "You clikced me ", Toast.LENGTH_LONG).show()
-        var j = 1 + 2
+        val ONE_MINUTE = 60000
+        var foo: String? = null
+        var length = foo?.length ?: 10
+        var plant: Plant?
+        plant = Plant(10, "Somthing", "weird species", "farmer", "uncommon")
+        Toast.makeText(this, plant?.toString() , Toast.LENGTH_LONG).show()
+
     }
 }
