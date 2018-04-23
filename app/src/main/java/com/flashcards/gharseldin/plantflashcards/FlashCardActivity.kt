@@ -1,5 +1,6 @@
 package com.flashcards.gharseldin.plantflashcards
 
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -47,6 +48,33 @@ class FlashCardActivity : AppCompatActivity() {
         var plant: Plant?
         plant = Plant(10, "Somthing", "weird species", "farmer", "uncommon")
         Toast.makeText(this, plant?.toString() , Toast.LENGTH_LONG).show()
+
+     }
+
+    inner class GetPlantActivity: AsyncTask<String, Int, List<Plant>>(){
+
+
+        override fun onPostExecute(result: List<Plant>?) {
+            super.onPostExecute(result)
+        }
+        
+        /**
+         * Open a connection to a data feed to retrieve network data
+         * @param search the search text that will narrow down the resuls
+         * @return a collection of Plant objects that are parsed from JSON
+         */
+        override fun doInBackground(vararg params: String?): List<Plant> {
+
+            TODO("implement the network call")
+            // Open connection to data feed
+
+            // Parse to plant objects
+
+            // Add plant objects to a collection
+
+            // return the results
+
+        }
 
     }
 }
