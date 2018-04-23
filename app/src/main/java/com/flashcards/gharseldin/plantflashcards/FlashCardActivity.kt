@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.flashcards.gharseldin.plantflashcards.dto.Plant
+import com.flashcards.gharseldin.plantflashcards.service.PlantService
 import kotlinx.android.synthetic.main.activity_flash_card.*
 
 class FlashCardActivity : AppCompatActivity() {
@@ -40,6 +41,12 @@ class FlashCardActivity : AppCompatActivity() {
         }
     }
 
+    fun onButton4Click(v: View){
+        var getPlantActivity = GetPlantActivity()
+        // Execute will create a new thread and invoke doInBackground in the new thread
+        getPlantActivity.execute("1")
+    }
+
     fun onButton5Click(v: View) {
         var i = 1 + 1
         val ONE_MINUTE = 60000
@@ -57,24 +64,18 @@ class FlashCardActivity : AppCompatActivity() {
         override fun onPostExecute(result: List<Plant>?) {
             super.onPostExecute(result)
         }
-        
+
         /**
          * Open a connection to a data feed to retrieve network data
          * @param search the search text that will narrow down the resuls
          * @return a collection of Plant objects that are parsed from JSON
          */
-        override fun doInBackground(vararg params: String?): List<Plant> {
-
-            TODO("implement the network call")
-            // Open connection to data feed
-
-            // Parse to plant objects
-
-            // Add plant objects to a collection
-
-            // return the results
-
+        override fun doInBackground(vararg search: String?): List<Plant>? {
+            
+            var difficulty = search[0]
+            var plantService = PlantService()
+            var allPlants = plantService.parsePlantsFromJsonData(difficulty)
+            return allPlants
         }
-
     }
 }
