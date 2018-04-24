@@ -8,6 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.flashcards.gharseldin.plantflashcards.R.id.fab
+import com.flashcards.gharseldin.plantflashcards.R.id.toolbar
 import com.flashcards.gharseldin.plantflashcards.dto.Plant
 import com.flashcards.gharseldin.plantflashcards.service.PlantService
 import kotlinx.android.synthetic.main.activity_flash_card.*
@@ -42,10 +44,14 @@ class FlashCardActivity : AppCompatActivity() {
     }
 
     fun onButton3Click(v: View) {
+        var allPlants = ArrayList<Plant>()
         // vall the plant constructor to get a new Plant Object
         var redbud = Plant(83, "Cercis", "Canadensis", "", "Eastern Rudbud")
         var pawpaw = Plant(100, "Asimina", "triloba", "Alleghany", "Alleghany Pawpaw", 10)
         var i = 1 + 1
+
+        allPlants.add(redbud)
+        allPlants.add(pawpaw)
 
     }
 
