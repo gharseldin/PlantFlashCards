@@ -43,6 +43,13 @@ class FlashCardActivity : AppCompatActivity() {
         }
     }
 
+    fun onButton2Click(v: View){
+        var foo: String? = null
+        var size = foo?.length ?: 0
+        var i = 1+1
+
+
+    }
     fun onButton3Click(v: View) {
         var allPlants = ArrayList<Plant>()
         // vall the plant constructor to get a new Plant Object
