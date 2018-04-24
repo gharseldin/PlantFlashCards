@@ -13,6 +13,8 @@ class PlantService {
         var allPlants = ArrayList<Plant>()
 
         var i = 1 + 1
+
+        var plant = Plant()
         // Open connection to data feed
 
         // Parse to plant objects

@@ -41,7 +41,15 @@ class FlashCardActivity : AppCompatActivity() {
         }
     }
 
-    fun onButton4Click(v: View){
+    fun onButton3Click(v: View) {
+        // vall the plant constructor to get a new Plant Object
+        var redbud = Plant(83, "Cercis", "Canadensis", "", "Eastern Rudbud")
+        var pawpaw = Plant(100, "Asimina", "triloba", "Alleghany", "Alleghany Pawpaw", 10)
+        var i = 1 + 1
+
+    }
+
+    fun onButton4Click(v: View) {
         var getPlantActivity = GetPlantActivity()
         // Execute will create a new thread and invoke doInBackground in the new thread
         getPlantActivity.execute("1")
@@ -54,11 +62,11 @@ class FlashCardActivity : AppCompatActivity() {
         var length = foo?.length ?: 10
         var plant: Plant?
         plant = Plant(10, "Somthing", "weird species", "farmer", "uncommon")
-        Toast.makeText(this, plant?.toString() , Toast.LENGTH_LONG).show()
+        Toast.makeText(this, plant?.toString(), Toast.LENGTH_LONG).show()
 
-     }
+    }
 
-    inner class GetPlantActivity: AsyncTask<String, Int, List<Plant>>(){
+    inner class GetPlantActivity : AsyncTask<String, Int, List<Plant>>() {
 
 
         override fun onPostExecute(result: List<Plant>?) {
@@ -71,7 +79,7 @@ class FlashCardActivity : AppCompatActivity() {
          * @return a collection of Plant objects that are parsed from JSON
          */
         override fun doInBackground(vararg search: String?): List<Plant>? {
-            
+
             var difficulty = search[0]
             var plantService = PlantService()
             var allPlants = plantService.parsePlantsFromJsonData(difficulty)
