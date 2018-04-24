@@ -1,30 +1,40 @@
 package com.flashcards.gharseldin.plantflashcards
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.AsyncTask
 import android.os.Bundle
+import android.provider.MediaStore
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-import com.flashcards.gharseldin.plantflashcards.R.id.fab
-import com.flashcards.gharseldin.plantflashcards.R.id.toolbar
+import android.widget.ImageView
 import com.flashcards.gharseldin.plantflashcards.dto.Plant
 import com.flashcards.gharseldin.plantflashcards.service.PlantService
-import kotlinx.android.synthetic.main.activity_flash_card.*
 
 class FlashCardActivity : AppCompatActivity() {
+
+    val CAMERA_ACTIVITY_REQUEST = 10
+    var imageView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flash_card)
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
+        val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        imageView = findViewById(R.id.imageSwitcher) as ImageView
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -43,13 +53,14 @@ class FlashCardActivity : AppCompatActivity() {
         }
     }
 
-    fun onButton2Click(v: View){
+    fun onButton2Click(v: View) {
         var foo: String? = null
         var size = foo?.length ?: 0
-        var i = 1+1
+        var i = 1 + 1
 
 
     }
+
     fun onButton3Click(v: View) {
         var allPlants = ArrayList<Plant>()
         // vall the plant constructor to get a new Plant Object
@@ -69,14 +80,21 @@ class FlashCardActivity : AppCompatActivity() {
     }
 
     fun onButton5Click(v: View) {
-        var i = 1 + 1
-        val ONE_MINUTE = 60000
-        var foo: String? = null
-        var length = foo?.length ?: 10
-        var plant: Plant?
-        plant = Plant(10, "Somthing", "weird species", "farmer", "uncommon")
-        Toast.makeText(this, plant?.toString(), Toast.LENGTH_LONG).show()
+        // Create an implicit intent to invoke the camera
+        var camerActivityIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(camerActivityIntent, CAMERA_ACTIVITY_REQUEST)
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_ACTIVITY_REQUEST) {
+                // I'm hearing back from the camera
+
+                var image = data?.extras?.get("data") as Bitmap
+                imageView?.setImageBitmap(image);
+            }
+        }
     }
 
     inner class GetPlantActivity : AsyncTask<String, Int, List<Plant>>() {

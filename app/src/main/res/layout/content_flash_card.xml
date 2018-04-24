@@ -55,7 +55,7 @@
             android:orientation="horizontal"></LinearLayout>
     </LinearLayout>
 
-    <ImageSwitcher
+    <ImageView
         android:id="@+id/imageSwitcher"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -67,6 +67,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </ImageSwitcher>
+    </ImageView>
 
 </android.support.constraint.ConstraintLayout>
